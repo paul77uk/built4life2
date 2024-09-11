@@ -2,6 +2,7 @@
 
 import { createMyWorkoutAction } from "@/app/my-workouts/actions";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 
 type Workout = {
@@ -15,14 +16,23 @@ type Workout = {
 };
 
 const AddMyWorkoutBtn = ({ workout }: { workout: Workout }) => {
+  const { toast } = useToast();
+
   const { mutate, isPending } = useMutation({
     mutationKey: ["createMyWorkout"],
     mutationFn: async () => createMyWorkoutAction(workout),
     onSuccess: () => {
-      alert(`${workout.title} Workout added to My Workouts`);
+      toast({
+        title: "Workout Created",
+        description: `${workout.title} Workout added to My Workouts`,
+      });
     },
     onError: (error) => {
-      alert(error.message);
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
     },
   });
 
