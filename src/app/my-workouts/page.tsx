@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -49,36 +50,32 @@ const Page = async () => {
                   <div className="text-xs text-gray-500">PR</div>
                   <div className="text-xs text-gray-500">Total Reps</div>
                 </div>
-              ) : (
-                <div className="flex justify-center items-center flex-col text-xs text-gray-500">
-                  <TotalRepsBtn />
-                  <div>Total Reps</div>
+              ) : null}
+
+              {workout.minutes !== null && (
+                <div className="flex flex-col justify-end h-full">
+                  <div className="text-center text-6xl font-semibold text-gray-700 m-3">
+                    <div>
+                      {workout.minutes}:{workout.seconds}0
+                    </div>
+                  </div>
+                  <div>
+                    <Card>
+                      <div className="flex items-center justify-evenly py-3">
+                        <Button>
+                          <FaPlay />
+                        </Button>
+                        <Button>
+                          <FaPause />
+                        </Button>
+                        <Button>
+                          <FaStop />
+                        </Button>
+                      </div>
+                    </Card>
+                  </div>
                 </div>
               )}
-
-              <div className="text-center text-6xl font-semibold text-gray-700 m-3">
-                {workout.minutes && (
-                  <div>
-                    {workout.minutes}:{workout.seconds}0
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <Card>
-                  <div className="flex items-center justify-evenly py-3">
-                    <Button>
-                      <FaPlay />
-                    </Button>
-                    <Button>
-                      <FaPause />
-                    </Button>
-                    <Button>
-                      <FaStop />
-                    </Button>
-                  </div>
-                </Card>
-              </div>
 
               <div>
                 <Button className="w-full">Save Result</Button>
