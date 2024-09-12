@@ -3,10 +3,13 @@ import { Button } from "@/components/ui/button";
 
 import { UnlockKeyhole } from "lucide-react";
 import Workout from "./Workout";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-const Workouts = () => {
+const Workouts = async () => {
   const isSubscribed = true;
   const isLoading = false;
+  const { isAuthenticated } = getKindeServerSession();
+  const isUserAuthenticated = await isAuthenticated();
 
   const workouts = [
     {
@@ -96,7 +99,6 @@ const Workouts = () => {
       exercises: ["50 Squats (50lb/ 25kg)"],
       pr: 0,
     },
-    
   ];
 
   return (
@@ -110,6 +112,8 @@ const Workouts = () => {
         </div>
       )}
 
+      
+
       <div>
         {isLoading ? (
           <div className="flex flex-wrap gap-8  justify-center m-5">
@@ -122,6 +126,7 @@ const Workouts = () => {
             {workouts.map((workout) => (
               <Workout
                 isSubscribed={isSubscribed}
+                isUserAuthenticated={isUserAuthenticated}
                 key={workout.id}
                 workout={workout}
               />

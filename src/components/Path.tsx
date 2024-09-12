@@ -11,11 +11,11 @@ type LinkType = {
 
 const Path = ({
   link,
-  isAdmin,
+  isUserAuthenticated,
   isSubscribed,
 }: {
   link: LinkType;
-  isAdmin: boolean;
+  isUserAuthenticated: boolean;
   isSubscribed: boolean;
 }) => {
   const pathname = usePathname();
@@ -27,9 +27,9 @@ const Path = ({
 
         pathname === link.path && "bg-[#DF0000] hover:text-white",
 
-        link.path === "/create" && !isAdmin && "hidden",
-
         link.path === "/my-workouts" && !isSubscribed && "hidden",
+
+        link.path === "/my-workouts" && !isUserAuthenticated && "hidden",
 
         link.path === "/history" && !isSubscribed && "hidden"
       )}

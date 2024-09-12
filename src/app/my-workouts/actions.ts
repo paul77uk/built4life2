@@ -35,10 +35,40 @@ export const createMyWorkoutAction = async ({
       seconds,
       userId: user.id,
     },
-  })
+  });
 
   revalidatePath("/my-workouts");
   redirect("/my-workouts");
 
   return { success: true, workout };
+};
+
+export const updateMyWorkoutAction = async ({
+  pr,
+  id,
+}: {
+  pr: number;
+  id: string;
+}) => {
+  const workout = await prisma.workout.update({
+    where: { id },
+    data: {
+      pr,
+    },
+  });
+
+  revalidatePath("/my-workouts");
+
+  return { success: true, workout };
+};
+
+export const getMyWorkoutsAction = async () => {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
+  const workouts = await prisma.workout.findMany({
+    where: { userId: user.id },
+  });
+
+  return workouts;
 };

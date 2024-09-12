@@ -3,9 +3,9 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Path from "./Path";
 
 export default async function SubNav() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-  const isAdmin = process.env.ADMIN_EMAIL === user.email;
+  const { isAuthenticated } = getKindeServerSession();
+  const isUserAuthenticated = await isAuthenticated();
+
   const isSubscribed = true;
 
   const links = [
@@ -19,10 +19,6 @@ export default async function SubNav() {
       path: "/my-workouts",
     },
     {
-      label: "Create Workout",
-      path: "/create",
-    },
-    {
       label: "History",
       path: "/history",
     },
@@ -32,12 +28,7 @@ export default async function SubNav() {
     <nav className=" bg-[#333333] w-full">
       <ul className="flex flex-wrap w-full justify-center text-xs uppercase font-semibold">
         {links.map((link) => (
-          <Path
-            key={link.path}
-            link={link}
-            isAdmin={isAdmin}
-            isSubscribed={isSubscribed}
-          />
+          <Path key={link.path} link={link} isSubscribed={isSubscribed} isUserAuthenticated={isUserAuthenticated}/>
         ))}
       </ul>
     </nav>

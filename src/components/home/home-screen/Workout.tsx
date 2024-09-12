@@ -24,9 +24,11 @@ type Workout = {
 const Workout = ({
   workout,
   isSubscribed,
+  isUserAuthenticated,
 }: {
   workout: Workout;
   isSubscribed: boolean;
+  isUserAuthenticated: boolean;
 }) => {
   return (
     <Card className="w-[292px] flex flex-col">
@@ -42,7 +44,7 @@ const Workout = ({
         ))}
       </CardContent>
       <CardFooter className="flex-1 items-end">
-        {isSubscribed ? (
+        {isSubscribed && isUserAuthenticated ? (
           <AddMyWorkoutBtn workout={workout} />
         ) : (
           <Button disabled className="flex gap-2 w-full">
