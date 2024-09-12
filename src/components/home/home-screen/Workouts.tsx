@@ -103,7 +103,7 @@ const Workouts = async () => {
 
   return (
     <div>
-      {!isSubscribed && (
+      {!isSubscribed || !isUserAuthenticated && (
         <div className="p-4 flex justify-center">
           <Button className="flex gap-2">
             <UnlockKeyhole />
@@ -111,8 +111,6 @@ const Workouts = async () => {
           </Button>
         </div>
       )}
-
-      
 
       <div>
         {isLoading ? (
