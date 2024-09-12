@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Card,
@@ -13,6 +13,9 @@ import { Button } from "@/components/ui/button";
 import { FaPause, FaPlay, FaStop } from "react-icons/fa";
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "@/hooks/use-toast";
+import { updateMyWorkoutAction } from "./actions";
 
 type Workout = {
   id: string;
@@ -28,6 +31,26 @@ type Workout = {
 
 const MyWorkout = ({ workout }: { workout: Workout }) => {
   const [totalReps, setTotalReps] = useState(0);
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["updatePr"],
+    mutationFn: async () =>
+      updateMyWorkoutAction({ pr: totalReps, id: workout.id }),
+    onSuccess: () => {
+      toast({
+        title: "PR Updated",
+        description: `${workout.title} PR updated to ${totalReps}`,
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   return (
     <Card key={workout.id} className="w-[292px] flex flex-col">
       <CardHeader className="text-center">
@@ -93,7 +116,13 @@ const MyWorkout = ({ workout }: { workout: Workout }) => {
         )}
 
         <div>
-          <Button className="w-full">Save Result</Button>
+          <Button
+            className="w-full"
+            onClick={() => mutate()}
+            disabled={isPending}
+          >
+            {isPending ? "Saving..." : "Save Result"}
+          </Button>
         </div>
       </CardContent>
     </Card>

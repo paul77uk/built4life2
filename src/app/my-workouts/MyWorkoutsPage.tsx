@@ -8,6 +8,7 @@ const MyWorkoutsPage = async () => {
 
   const workouts = await prisma.workout.findMany({
     where: { userId: user.id },
+    orderBy: { createdAt: 'asc' },
   });
 
   return (
