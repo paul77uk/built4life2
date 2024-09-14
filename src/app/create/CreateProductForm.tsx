@@ -1,6 +1,5 @@
 "use client";
 
-import BaseLayout from "@/components/BaseLayout";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

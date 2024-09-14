@@ -1,14 +1,17 @@
 import prisma from "@/db/prisma";
 import MyWorkout from "./MyWorkout";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { notFound } from "next/navigation";
 
 const MyWorkoutsPage = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
+  if (!user) return notFound();
+
   const workouts = await prisma.workout.findMany({
     where: { userId: user.id },
-    orderBy: { createdAt: 'asc' },
+    orderBy: { createdAt: "asc" },
   });
 
   return (

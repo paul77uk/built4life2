@@ -2,17 +2,9 @@
 
 import prisma from "@/db/prisma";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Workout } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
-type MyWorkout = {
-  title: string;
-  description: string;
-  exercises: string[];
-  pr?: number;
-  minutes?: number;
-  seconds?: number;
-};
 
 export const createMyWorkoutAction = async ({
   title,
@@ -21,14 +13,14 @@ export const createMyWorkoutAction = async ({
   pr,
   minutes,
   seconds,
-}: MyWorkout) => {
+}: Partial<Workout>) => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
   const workout = await prisma.workout.create({
     data: {
-      title,
-      description,
+      title: title ?? "",
+      description: description ?? "",
       exercises,
       minutes,
       pr,
@@ -48,7 +40,7 @@ export const updateMyWorkoutAction = async ({
   id,
 }: {
   pr: number;
-  id: string;
+  id?: string;
 }) => {
   const workout = await prisma.workout.update({
     where: { id },

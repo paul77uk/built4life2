@@ -16,18 +16,7 @@ import { Plus } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "@/hooks/use-toast";
 import { updateMyWorkoutAction } from "./actions";
-
-type Workout = {
-  id: string;
-  title: string;
-  description: string;
-  exercises: string[];
-  pr: number | null;
-  minutes: number | null;
-  seconds: number | null;
-  createdAt: Date;
-  updatedAt: Date;
-};
+import { Workout } from "@prisma/client";
 
 const MyWorkout = ({ workout }: { workout: Workout }) => {
   const [totalReps, setTotalReps] = useState(0);
@@ -59,11 +48,15 @@ const MyWorkout = ({ workout }: { workout: Workout }) => {
       </CardHeader>
       <CardContent className="flex flex-col justify-between flex-1 gap-4">
         <div className="mx-auto">
-          {workout.exercises.map((exercise) => (
-            <div key={exercise}>
-              <p>{exercise}</p>
+          {workout.exercises && (
+            <div>
+              {workout.exercises.map((exercise) => (
+                <div key={exercise}>
+                  <p>{exercise}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
 
         {workout.pr !== null ? (

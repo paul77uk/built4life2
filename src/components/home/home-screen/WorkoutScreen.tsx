@@ -10,23 +10,14 @@ import {
 import { LockKeyhole } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AddMyWorkoutBtn from "./AddMyWorkoutBtn";
+import { Workout } from "@prisma/client";
 
-type Workout = {
-  id: number;
-  title: string;
-  description: string;
-  exercises: string[];
-  pr?: number;
-  minutes?: number;
-  seconds?: number;
-};
-
-const Workout = ({
+const WorkoutScreen = ({
   workout,
   isSubscribed,
   isUserAuthenticated,
 }: {
-  workout: Workout;
+  workout: Partial<Workout>;
   isSubscribed: boolean;
   isUserAuthenticated: boolean;
 }) => {
@@ -37,11 +28,15 @@ const Workout = ({
         <CardDescription>{workout.description}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col justify-between">
-        {workout.exercises.map((exercise) => (
-          <div key={exercise}>
-            <p>{exercise}</p>
+        {workout.exercises && (
+          <div>
+            {workout.exercises.map((exercise) => (
+              <div key={exercise}>
+                <p>{exercise}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </CardContent>
       <CardFooter className="flex-1 items-end">
         {isSubscribed && isUserAuthenticated ? (
@@ -55,4 +50,4 @@ const Workout = ({
     </Card>
   );
 };
-export default Workout;
+export default WorkoutScreen;

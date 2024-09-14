@@ -13,6 +13,10 @@ export default async function SubNav() {
       label: "Workouts",
       path: "/",
     },
+    {
+      label: "Programs",
+      path: "/programs",
+    },
 
     {
       label: "My Workouts",
@@ -28,7 +32,12 @@ export default async function SubNav() {
     <nav className=" bg-[#333333] w-full">
       <ul className="flex flex-wrap w-full justify-center text-xs uppercase font-semibold">
         {links.map((link) => (
-          <Path key={link.path} link={link} isSubscribed={isSubscribed} isUserAuthenticated={isUserAuthenticated}/>
+          <Path
+            key={link.path}
+            link={link}
+            isSubscribed={isSubscribed}
+            isUserAuthenticated={isUserAuthenticated}
+          />
         ))}
       </ul>
     </nav>
