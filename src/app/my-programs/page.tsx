@@ -1,7 +1,5 @@
 "use client";
 
-import { programs } from "@/data/programs";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 
@@ -17,40 +15,44 @@ import {
 } from "@/components/ui/card";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { Lock } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
-import { createMyProgramAction } from "./actions";
-import { toast } from "@/hooks/use-toast";
+import { useQuery } from "@tanstack/react-query";
+import { getMyProgramsAction } from "./actions";
+import MyWorkout from "../my-workouts/MyWorkout";
 
 const Page = () => {
-  const { isAuthenticated } = useKindeBrowserClient();
-  const [currentProgram, setCurrentProgram] = useState(programs[0]);
-
-  console.log({ programs });
-
-  const { mutate, isPending } = useMutation({
-    mutationKey: ["createMyProgram"],
-    mutationFn: async () =>
-      createMyProgramAction({
-        program1: currentProgram,
-      }),
-    onSuccess: () => {
-      toast({
-        title: "Program Added",
-        description: `${currentProgram.title} added to My Programs`,
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
+  const {
+    data: programs,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["programs"],
+    queryFn: async () => await getMyProgramsAction(),
   });
+
+  const [currentProgram, setCurrentProgram] = useState({
+    title: "program",
+    days: [],
+  });
+
+  useEffect(() => {
+    if (programs){
+    setCurrentProgram(programs[0]);
+    }
+  },[programs]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (programs === null || programs?.length === 0) {
+    return <div>No programs found</div>;
+  }
 
   return (
     <div>
@@ -66,8 +68,10 @@ const Page = () => {
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                 {programs.map((program) => (
                   <Link
-                    key={program.title}
-                    onClick={() => setCurrentProgram(program)}
+                    key={program.id}
+                    onClick={() => {
+                      setCurrentProgram(program);
+                    }}
                     href="#"
                     className={cn(
                       "rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
@@ -99,7 +103,7 @@ const Page = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <header className="flex h-14  items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+          <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
             <Sheet>
               <SheetTrigger asChild>
                 <Button
@@ -116,10 +120,13 @@ const Page = () => {
                   <Link href="#" className="text-lg font-semibold">
                     <div className="sr-only">Programs</div>
                   </Link>
-                  {programs.map((program) => (
+                  {programs?.map((program) => (
                     <Link
-                      key={program.title}
-                      onClick={() => setCurrentProgram(program)}
+                      key={program.id}
+                      onClick={() => {
+                        setCurrentProgram(program);
+                        console.log("currentProgram", currentProgram);
+                      }}
                       href="#"
                       className="mx-[-0.65rem] rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                     >
@@ -145,23 +152,7 @@ const Page = () => {
                 </div>
               </SheetContent>
             </Sheet>
-            <div className="flex gap-2 items-center font-semibold">
-              {currentProgram.title}
-              {isAuthenticated ? (
-                <Button
-                  disabled={isPending}
-                  onClick={() => mutate()}
-                  variant={"outline"}
-                >
-                  {isPending ? "Adding..." : "Add to My Programs"}
-                </Button>
-              ) : (
-                <Button disabled variant={"outline"} className="flex gap-2">
-                  <Lock />
-                  Add to My Workouts
-                </Button>
-              )}
-            </div>
+            <div className="font-semibold">{currentProgram.title}</div>
           </header>
           <main className="flex flex-1 flex-col gap-4 p-2 lg:gap-6 lg:p-2">
             {/* <div className="flex items-center">
@@ -180,7 +171,7 @@ const Page = () => {
                     <TabsList>
                       <div>
                         {currentProgram.days.map((day) => (
-                          <TabsTrigger value={day.title} key={day.title}>
+                          <TabsTrigger value={day.id} key={day.id}>
                             {day.title}
                           </TabsTrigger>
                         ))}
@@ -189,26 +180,11 @@ const Page = () => {
 
                     <div>
                       {currentProgram.days.map((day) => (
-                        <TabsContent value={day.title} key={day.title}>
+                        <TabsContent value={day.id} key={day.id}>
                           {day.workouts.map((workout) => (
-                            <Card
-                              key={workout.title}
-                              className="w-[350px] mx-auto my-5 text-center"
-                            >
-                              <CardHeader>
-                                <CardTitle>{workout.title}</CardTitle>
-                                <CardDescription>
-                                  {workout.description}
-                                </CardDescription>
-                              </CardHeader>
-                              <CardContent>
-                                {workout.exercises.map((exercise) => (
-                                  <div key={exercise}>
-                                    <p>{exercise}</p>
-                                  </div>
-                                ))}
-                              </CardContent>
-                            </Card>
+                            <div key={workout.id} className="my-5 flex justify-center">
+                              <MyWorkout key={workout.id} workout={workout} />
+                            </div>
                           ))}
                         </TabsContent>
                       ))}

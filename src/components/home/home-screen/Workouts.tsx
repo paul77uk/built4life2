@@ -13,7 +13,7 @@ const Workouts = async () => {
   const isUserAuthenticated = await isAuthenticated();
 
   return (
-    <div>
+    <div >
       {!isSubscribed ||
         (!isUserAuthenticated && (
           <div className="p-4 flex justify-center">

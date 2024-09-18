@@ -31,7 +31,15 @@ const Path = ({
 
         link.path === "/my-workouts" && !isUserAuthenticated && "hidden",
 
-        link.path === "/history" && !isSubscribed && "hidden"
+        link.path === "/my-programs" && !isSubscribed && "hidden",
+
+        link.path === "/my-programs" && !isUserAuthenticated && "hidden",
+
+        link.path === "/history" && !isSubscribed && "hidden",
+
+        link.path === "/history" && !isUserAuthenticated && "hidden",
+
+        
       )}
       href={link.path}
     >

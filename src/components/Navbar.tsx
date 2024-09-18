@@ -9,7 +9,7 @@ const font = Rubik_Dirt({ weight: "400", preload: false });
 
 const Nav = async () => {
   return (
-    <div className="w-full ">
+    <div className="">
       <nav className=" bg-black">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <div className="flex gap-3">
