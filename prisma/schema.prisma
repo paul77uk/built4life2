@@ -49,11 +49,10 @@ model Workout {
   seconds     Int?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  days        Day[]
 
   user      User?   @relation(fields: [userId], references: [id])
   programId String?
-  Day       Day?    @relation(fields: [dayId], references: [id])
-  dayId     String?
 
   @@index([userId])
 }

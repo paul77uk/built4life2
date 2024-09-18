@@ -31,16 +31,38 @@ const Page = () => {
     queryFn: async () => await getMyProgramsAction(),
   });
 
-  const [currentProgram, setCurrentProgram] = useState({
-    title: "program",
+  const [currentProgram, setCurrentProgram] = useState<{
+    id: string;
+    title: string;
+    days: {
+      id: string;
+      title: string;
+      workouts: {
+        id: string;
+        userId: string | null;
+        title: string;
+        description: string;
+        exercises: string[];
+        pr: number | null;
+        minutes: number | null;
+        seconds: number | null;
+        createdAt: Date;
+        updatedAt: Date;
+        programId: string | null;
+        dayId: string | null;
+      }[];
+    }[];
+  }>({
+    id: "",
+    title: "",
     days: [],
   });
 
   useEffect(() => {
-    if (programs){
-    setCurrentProgram(programs[0]);
+    if (programs) {
+      setCurrentProgram(programs[0]);
     }
-  },[programs]);
+  }, [programs]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -50,7 +72,7 @@ const Page = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  if (programs === null || programs?.length === 0) {
+  if (programs === null || programs?.length === 0 || !programs) {
     return <div>No programs found</div>;
   }
 
@@ -120,7 +142,7 @@ const Page = () => {
                   <Link href="#" className="text-lg font-semibold">
                     <div className="sr-only">Programs</div>
                   </Link>
-                  {programs?.map((program) => (
+                  {programs.map((program) => (
                     <Link
                       key={program.id}
                       onClick={() => {
@@ -182,7 +204,10 @@ const Page = () => {
                       {currentProgram.days.map((day) => (
                         <TabsContent value={day.id} key={day.id}>
                           {day.workouts.map((workout) => (
-                            <div key={workout.id} className="my-5 flex justify-center">
+                            <div
+                              key={workout.id}
+                              className="my-5 flex justify-center"
+                            >
                               <MyWorkout key={workout.id} workout={workout} />
                             </div>
                           ))}

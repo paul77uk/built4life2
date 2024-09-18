@@ -60,6 +60,7 @@ export const getMyWorkoutsAction = async () => {
 
   const workouts = await prisma.workout.findMany({
     where: { userId: user.id },
+    orderBy: { title: "desc" },
   });
 
   return workouts;

@@ -47,33 +47,47 @@ export const createMyProgramAction = async ({
             },
           });
           day.workouts.forEach(async (workout) => {
-            if (!existingWorkouts.find((w) => w.title === workout.title)) {
-              await prisma.workout.create({
-                data: {
-                  title: workout.title ?? "",
-                  description: workout.description ?? "",
-                  exercises: workout.exercises,
-                  minutes: workout.minutes,
-                  seconds: workout.seconds,
-                  userId: user.id,
-                  dayId: dayDB.id,
-                },
-              });
-            } else {
-              await prisma.day.update({
-                include: {
-                  workouts: true,
-                },
-                where: { id: dayDB.id },
-                data: {
-                  workouts: {
-                    connect: {
+            // if (!existingWorkouts.find((w) => w.title === workout.title)) {
+            await prisma.day.update({
+              include: {
+                workouts: true,
+              },
+              where: { id: dayDB.id },
+              data: {
+                workouts: {
+                  connectOrCreate: {
+                    where: {
                       title: workout.title ?? "",
+                    },
+                    create: {
+                      title: workout.title ?? "",
+                      description: workout.description ?? "",
+                      exercises: workout.exercises,
+                      pr: workout.pr,
+                      minutes: workout.minutes,
+                      seconds: workout.seconds,
+                      userId: user.id,
                     },
                   },
                 },
-              });
-            }
+              },
+            });
+            // }
+            // else {
+            //   await prisma.day.update({
+            //     include: {
+            //       workouts: true,
+            //     },
+            //     where: { id: dayDB.id },
+            //     data: {
+            //       workouts: {
+            //         connect: {
+            //           title: workout.title ?? "",
+            //         },
+            //       },
+            //     },
+            //   });
+            // }
           });
         });
       }
