@@ -202,7 +202,7 @@ const Page = () => {
                                 </CardDescription>
                               </CardHeader>
                               <CardContent>
-                                {workout.exercises.map((exercise) => (
+                                {workout.exercises?.map((exercise) => (
                                   <div key={exercise}>
                                     <p>{exercise}</p>
                                   </div>

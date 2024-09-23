@@ -1,3 +1,4 @@
+import { programs } from '@/data/programs';
 "use server";
 
 import prisma from "@/db/prisma";
@@ -50,6 +51,7 @@ export const updateMyWorkoutAction = async ({
   });
 
   revalidatePath("/my-workouts");
+  revalidatePath("/my-programs");
 
   return { success: true, workout };
 };

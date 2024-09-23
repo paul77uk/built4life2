@@ -17,7 +17,7 @@ export const getMyProgramsAction = async () => {
           title: true,
           id: true,
           workouts: {
-            orderBy: { id: "asc" },
+            orderBy: { updatedAt: "desc" },
           },
         },
         orderBy: { title: "asc" },

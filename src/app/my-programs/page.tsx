@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { getMyProgramsAction } from "./actions";
 import MyWorkout from "../my-workouts/MyWorkout";
+import { Prisma } from "@prisma/client";
 
 const Page = () => {
   const {
@@ -31,30 +32,9 @@ const Page = () => {
     queryFn: async () => await getMyProgramsAction(),
   });
 
-  const [currentProgram, setCurrentProgram] = useState<{
-    id: string;
-    title: string;
-    days: {
-      id: string;
-      title: string;
-      workouts: {
-        id: string;
-        userId: string | null;
-        title: string;
-        description: string;
-        exercises: string[];
-        pr: number | null;
-        minutes: number | null;
-        seconds: number | null;
-        createdAt: Date;
-        updatedAt: Date;
-        programId: string | null;
-        dayId: string | null;
-      }[];
-    }[];
-  }>({
+  const [currentProgram, setCurrentProgram] = useState({
     id: "",
-    title: "",
+    title: "d",
     days: [],
   });
 
@@ -188,7 +168,7 @@ const Page = () => {
             >
               <div className="flex flex-col items-center gap-1 text-center">
                 {/* Tabs */}
-                <Tabs defaultValue={programs[0].days[0].title}>
+                <Tabs defaultValue={programs[0].days[0].id}>
                   <div>
                     <TabsList>
                       <div>

@@ -83,7 +83,7 @@ export const workouts = [
     title: "AMRAP Clean & Press",
     description: "AMRAP in 1 set",
     exercises: ["Clean & Press (100lb/ 45kg)"],
-    pr: 9,
+    pr: 10,
   },
   // index 11
   {
@@ -114,7 +114,7 @@ export const workouts = [
     title: "Farmers AMRAP",
     description: "AMRAP in 1 set",
     exercises: ["Farmers Walk (135lb/ 60kg)"],
-    pr: 12,
+    pr: 13,
   },
   // index 15
   {
@@ -165,44 +165,28 @@ export const workouts = [
   },
   // index 21
   {
-    title: "AMRAP Bulgarian Split Squat (Right)",
-    description: "AMRAP in 1 set",
-    exercises: ["Bulgarian Split Squat"],
-    pr: 9,
-  },
-  // index 22
-  {
-    title: "Total Reps Bulgarian Split Squat (Right)",
+    title: "Total Reps Static Lunges",
     description: "Total Reps in 5 minutes",
-    exercises: ["Bulgarian Split Squat"],
-    pr: 61,
+    exercises: ["Static Lunges"],
+    pr: 0,
     minutes: 5,
     seconds: 0,
   },
-  // index 23
+  // index 22
   {
-    title: "AMRAP Bulgarian Split Squat (Left)",
+    title: "AMRAP Static Lunges",
     description: "AMRAP in 1 set",
     exercises: ["Bulgarian Split Squat"],
     pr: 26,
   },
-  // index 24
-  {
-    title: "Total Reps Bulgarian Split Squat (Left)",
-    description: "Total Reps in 5 minutes",
-    exercises: ["Bulgarian Split Squat"],
-    pr: 65,
-    minutes: 5,
-    seconds: 0,
-  },
-
-  // index 25
+  // index 23
   {
     title: "AMRAP Squats",
     description: "AMRAP in 1 set",
     exercises: ["Squats (100lb/ 45kg)"],
     pr: 8,
   },
+  // index 24
   {
     title: "BFL Triple Threat 10",
     description: "AMRAP in 20 minutes",
@@ -213,6 +197,158 @@ export const workouts = [
     ],
     pr: 0,
     minutes: 20,
+    seconds: 0,
+  },
+  // index 25
+  {
+    title: "AMRAP Deadlift",
+    description: "AMRAP in 1 set",
+    exercises: ["Deadlift (135lb/ 60kg)"],
+    pr: 10,
+  },
+  // index 26
+  {
+    title: "AMRAP Deadlift in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Deadlift (135lb/ 60kg)"],
+    pr: 27,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 27
+  {
+    title: "AMRAP Bent Row",
+    description: "AMRAP in 1 set",
+    exercises: ["Bent Row (135lb/ 60kg)"],
+    pr: 6,
+  },
+  // index 28
+  {
+    title: "AMRAP Bent Row in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Bent Row (135lb/ 60kg)"],
+    pr: 24,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 29
+  {
+    title: "AMRAP Overhead Press",
+    description: "AMRAP in 1 set",
+    exercises: ["Overhead Press (135lb/ 60kg)"],
+    pr: 4,
+  },
+  // index 30
+  {
+    title: "AMRAP Overhead Press in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Overhead Press (135lb/ 60kg)"],
+    pr: 11,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 31
+  {
+    title: "AMRAP Curls",
+    description: "AMRAP in 1 set",
+    exercises: ["Curls (35lb/ 17kg)"],
+    pr: 14,
+  },
+  // index 32
+  {
+    title: "AMRAP Curls in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Curls (35lb/ 17kg)"],
+    pr: 57,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 33
+  {
+    title: "AMRAP Squats in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Squats (100lb/ 45kg)"],
+    pr: 0,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 34
+  {
+    title: "AMRAP Cleans",
+    description: "AMRAP in 1 set",
+    exercises: ["Cleans (135lb/ 60kg)"],
+    pr: 0,
+  },
+  // index 35
+  {
+    title: "AMRAP Cleans in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Cleans (135lb/ 60kg)"],
+    pr: 0,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 36
+  {
+    title: "AMRAP Shoulder Carry",
+    description: "AMRAP in 1 set",
+    exercises: ["Shoulder Carry (135lb/ 60kg)"],
+    pr: 0,
+  },
+  // index 37
+  {
+    title: "AMRAP Shoulder Carry in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Shoulder Carry (135lb/ 60kg)"],
+    pr: 0,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 38
+  {
+    title: "Sprinting/ Running",
+  },
+  // index 39
+  {
+    title: "AMRAP Dips",
+    description: "AMRAP in 1 set",
+    exercises: ["Dips"],
+    pr: 0,
+  },
+  // index 40
+  {
+    title: "AMRAP Dips in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Dips"],
+    pr: 0,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 41
+  {
+    title: "AMRAP Clean & Press in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Clean & Press (100lb/ 45kg)"],
+    pr: 32,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 42
+  {
+    title: "AMRAP Squats in 5 minutes 2",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Squats (50lb/ 25kg)"],
+    pr: 50,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 43
+  {
+    title: "AMRAP Farmers in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Farmers Walk (135lb/ 60kg)"],
+    pr: 31,
+    minutes: 5,
     seconds: 0,
   },
 ];

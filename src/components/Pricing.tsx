@@ -6,6 +6,7 @@ import styles from "@/components/styles/pricing.module.css";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 export interface PricingTierFrequency {
   id: string;
@@ -40,7 +41,7 @@ export const tiers: PricingTier[] = [
     name: "Premium Plan",
     id: "0",
     href: "/subscribe",
-    price: { "1": "$1", "2": "$10" },
+    price: { "1": "$2", "2": "$20" },
     discountPrice: { "1": "", "2": "" },
     description: `Get access to our exclusive content.
 Cancel anytime.`,
@@ -96,7 +97,10 @@ export default function PricingPage() {
 
   return (
     <div
-      className={cn("flex flex-col w-full items-center", styles.fancyOverlay)}
+      className={cn(
+        "flex flex-col w-full items-center mt-10",
+        styles.fancyOverlay
+      )}
     >
       <div className="w-full flex flex-col items-center mb-24">
         <div className="mx-auto max-w-7xl px-6 xl:px-8">
@@ -218,17 +222,21 @@ export default function PricingPage() {
                       {frequency.priceSuffix}
                     </span>
                   </p>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex justify-center mt-8 flex-shrink-0"
+
+                  <Button
+                    asChild
+                    size="lg"
+                    className="my-3"
+                    onClick={() => {
+                      if (frequency.value === "1") {
+                        saveStripeLinkToLocalStorage(monthlyUrl);
+                      } else {
+                        saveStripeLinkToLocalStorage(yearlyUrl);
+                      }
+                    }}
                   >
-                    <Button size="lg">{tier.cta}</Button>
-                  </a>
-                  <p className="mt-2 text-xs leading-5 text-gray-700 dark:text-gray-400">
-                    Sign up in seconds, no credit card required.
-                  </p>
+                    <Link href={"/api/auth/login"}>{tier.cta}</Link>
+                  </Button>
                 </div>
               </div>
             </div>
