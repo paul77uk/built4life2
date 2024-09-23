@@ -115,17 +115,19 @@ export async function POST(req: Request) {
               // react-email && resend
 
               // only use in development
-              await resend.emails.send({
-                from: "OnlyHorse <onboarding@resend.dev>",
-                to: [customerDetails.email],
-                subject: "Subscription Confirmation",
-                react: WelcomeEmail({
-                  userName: customerDetails.email,
-                  userEmail: user.email,
-                  subscriptionStartDate: subscription.startDate,
-                  subscriptionEndDate: subscription.endDate,
-                }),
-              });
+              if (process.env.NODE_ENV !== "production") {
+                await resend.emails.send({
+                  from: "OnlyHorse <onboarding@resend.dev>",
+                  to: [customerDetails.email],
+                  subject: "Subscription Confirmation",
+                  react: WelcomeEmail({
+                    userName: customerDetails.email,
+                    userEmail: user.email,
+                    subscriptionStartDate: subscription.startDate,
+                    subscriptionEndDate: subscription.endDate,
+                  }),
+                });
+              }
             }
           }
         }

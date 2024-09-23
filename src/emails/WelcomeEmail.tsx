@@ -35,7 +35,7 @@ const WelcomeEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
-            <Img
+            {/* <Img
               // src={`${BASE_URL}/horse-1.png`}
               // todo => delete this one below as only works in development and will cause an error in production
               src={`https://i.ibb.co/CV1mKKY/horse-1.jpg`}
@@ -43,13 +43,13 @@ const WelcomeEmail = ({
               height="400"
               alt="welcome icon"
               style={{ margin: "auto", borderRadius: 10 }}
-            />
+            /> */}
             <Heading style={{ ...global.heading }}>
               Welcome to OnlyHorse!
             </Heading>
             <Text style={global.text}>Hello {userName},</Text>
             <Text style={global.text}>
-              We're really happy to see you on our platform. We hope you have a
+              We are really happy to see you on our platform. We hope you have a
               great experience and enjoy all the features we offer.
             </Text>
             <Hr style={global.hr} />

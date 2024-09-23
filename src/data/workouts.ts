@@ -176,8 +176,8 @@ export const workouts = [
   {
     title: "AMRAP Static Lunges",
     description: "AMRAP in 1 set",
-    exercises: ["Bulgarian Split Squat"],
-    pr: 26,
+    exercises: ["Static Lunges"],
+    pr: 0,
   },
   // index 23
   {
