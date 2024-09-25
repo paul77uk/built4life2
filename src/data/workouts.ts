@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const workouts = [
   // index 0
   {
@@ -40,7 +42,7 @@ export const workouts = [
     title: "BFL BodyWeight 3",
     description: "AMRAP in 20 minutes",
     exercises: ["10 Pushups", "8 Inverted Rows", "10 Lunges"],
-    pr: 0,
+    pr: 14,
     minutes: 20,
     seconds: 0,
   },
@@ -129,7 +131,7 @@ export const workouts = [
     title: "Push Ups AMRAP",
     description: "AMRAP in 1 set",
     exercises: ["Push Ups"],
-    pr: 23,
+    pr: 28,
   },
   // index 17
   {
@@ -152,7 +154,7 @@ export const workouts = [
     title: "AMRAP Inverted Rows",
     description: "AMRAP in 1 set",
     exercises: ["Inverted Rows"],
-    pr: 18,
+    pr: 22,
   },
   // index 20
   {
@@ -168,7 +170,7 @@ export const workouts = [
     title: "Total Reps Static Lunges",
     description: "Total Reps in 5 minutes",
     exercises: ["Static Lunges"],
-    pr: 0,
+    pr: 88,
     minutes: 5,
     seconds: 0,
   },
@@ -177,7 +179,7 @@ export const workouts = [
     title: "AMRAP Static Lunges",
     description: "AMRAP in 1 set",
     exercises: ["Static Lunges"],
-    pr: 0,
+    pr: 30,
   },
   // index 23
   {
@@ -204,14 +206,14 @@ export const workouts = [
     title: "AMRAP Deadlift",
     description: "AMRAP in 1 set",
     exercises: ["Deadlift (135lb/ 60kg)"],
-    pr: 10,
+    pr: 11,
   },
   // index 26
   {
     title: "AMRAP Deadlift in 5 minutes",
     description: "AMRAP in 5 minutes",
     exercises: ["Deadlift (135lb/ 60kg)"],
-    pr: 27,
+    pr: 31,
     minutes: 5,
     seconds: 0,
   },
@@ -220,14 +222,14 @@ export const workouts = [
     title: "AMRAP Bent Row",
     description: "AMRAP in 1 set",
     exercises: ["Bent Row (135lb/ 60kg)"],
-    pr: 6,
+    pr: 7,
   },
   // index 28
   {
     title: "AMRAP Bent Row in 5 minutes",
     description: "AMRAP in 5 minutes",
     exercises: ["Bent Row (135lb/ 60kg)"],
-    pr: 24,
+    pr: 30,
     minutes: 5,
     seconds: 0,
   },
@@ -243,7 +245,7 @@ export const workouts = [
     title: "AMRAP Overhead Press in 5 minutes",
     description: "AMRAP in 5 minutes",
     exercises: ["Overhead Press (135lb/ 60kg)"],
-    pr: 11,
+    pr: 14,
     minutes: 5,
     seconds: 0,
   },
@@ -252,14 +254,14 @@ export const workouts = [
     title: "AMRAP Curls",
     description: "AMRAP in 1 set",
     exercises: ["Curls (35lb/ 17kg)"],
-    pr: 14,
+    pr: 16,
   },
   // index 32
   {
     title: "AMRAP Curls in 5 minutes",
     description: "AMRAP in 5 minutes",
     exercises: ["Curls (35lb/ 17kg)"],
-    pr: 57,
+    pr: 76,
     minutes: 5,
     seconds: 0,
   },
@@ -351,4 +353,22 @@ export const workouts = [
     minutes: 5,
     seconds: 0,
   },
+  // index 44
+  {
+    title: 'AMRAP Push Ups in 5 minutes',
+    description: 'AMRAP in 5 minutes',
+    exercises: ['Push Ups'],
+    pr: 135,
+    minutes: 5,
+    seconds: 0,
+  },
+  // index 45
+  {
+    title: 'AMRAP Inverted Rows in 5 minutes',
+    description: 'AMRAP in 5 minutes',
+    exercises: ['Inverted Rows'],
+    pr: 53,
+    minutes: 5,
+    seconds: 0,
+  }
 ];

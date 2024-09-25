@@ -9,11 +9,10 @@ import Link from "next/link";
 import prisma from "@/db/prisma";
 
 const Workouts = async () => {
-  // TODO: get isSubscribed, check isAutthenticated first, error below
+  const isLoading = false;
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  const isLoading = false;
   const { isAuthenticated } = getKindeServerSession();
   const isUserAuthenticated = await isAuthenticated();
   let isSubscribed = false;
@@ -51,7 +50,7 @@ const Workouts = async () => {
             {workouts.map((workout) => (
               <WorkoutScreen
                 isSubscribed={isSubscribed}
-                isUserAuthenticated={isUserAuthenticated}
+                // isUserAuthenticated={isUserAuthenticated}
                 key={workout.title}
                 workout={workout}
               />

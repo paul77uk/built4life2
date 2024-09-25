@@ -15,11 +15,11 @@ import { Workout } from "@prisma/client";
 const WorkoutScreen = ({
   workout,
   isSubscribed,
-  isUserAuthenticated,
-}: {
+}: // isUserAuthenticated,
+{
   workout: Partial<Workout>;
   isSubscribed: boolean;
-  isUserAuthenticated: boolean;
+  // isUserAuthenticated: boolean;
 }) => {
   return (
     <Card className="w-[292px] flex flex-col">
@@ -39,7 +39,8 @@ const WorkoutScreen = ({
         )}
       </CardContent>
       <CardFooter className="flex-1 items-end">
-        {isSubscribed && isUserAuthenticated ? (
+        {isSubscribed ? (
+          // && isUserAuthenticated
           <AddMyWorkoutBtn workout={workout} />
         ) : (
           <Button disabled className="flex gap-2 w-full">

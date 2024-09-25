@@ -26,7 +26,9 @@ const WelcomeEmail = ({
 }) => {
   // TODO=> ADD THE PROD URL
   const BASE_URL =
-    process.env.NODE_ENV === "development" ? "http://localhost:3000" : "";
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://built-4-life.vercel.app/";
 
   return (
     <Html>
@@ -45,7 +47,7 @@ const WelcomeEmail = ({
               style={{ margin: "auto", borderRadius: 10 }}
             /> */}
             <Heading style={{ ...global.heading }}>
-              Welcome to OnlyHorse!
+              Welcome to Built4Life
             </Heading>
             <Text style={global.text}>Hello {userName},</Text>
             <Text style={global.text}>
@@ -80,13 +82,13 @@ const WelcomeEmail = ({
               href={BASE_URL}
               style={{ ...global.button, margin: "10px auto" }}
             >
-              Visit OnlyHorse
+              Visit Built4Life
             </Link>
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
             <Text style={footer.text}>
-              © {new Date().getFullYear()} OnlyHorse, Inc. All Rights Reserved.
+              © {new Date().getFullYear()} Built4Life, Inc. All Rights Reserved.
             </Text>
           </Section>
         </Container>

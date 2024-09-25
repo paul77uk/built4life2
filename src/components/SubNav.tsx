@@ -1,12 +1,25 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 import Path from "./Path";
+import prisma from "@/db/prisma";
 
 export default async function SubNav() {
   const { isAuthenticated } = getKindeServerSession();
   const isUserAuthenticated = await isAuthenticated();
 
-  const isSubscribed = true;
+  let isSubscribed = false;
+
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
+  if (isUserAuthenticated) {
+    const dbUser = await prisma.user.findUnique({
+      where: {
+        id: user.id,
+      },
+    });
+    isSubscribed = dbUser?.isSubscribed ?? false;
+  }
 
   const links = [
     {

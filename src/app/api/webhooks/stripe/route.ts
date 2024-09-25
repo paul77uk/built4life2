@@ -117,7 +117,7 @@ export async function POST(req: Request) {
               // only use in development
               if (process.env.NODE_ENV !== "production") {
                 await resend.emails.send({
-                  from: "OnlyHorse <onboarding@resend.dev>",
+                  from: "Built4Life <onboarding@resend.dev>",
                   to: [customerDetails.email],
                   subject: "Subscription Confirmation",
                   react: WelcomeEmail({
