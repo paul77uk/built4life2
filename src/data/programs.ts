@@ -76,7 +76,7 @@ export const programs = [
     days: [
       {
         title: "Day 1",
-        workouts: [workouts[15], workouts[26]],
+        workouts: [workouts[15], workouts[26], workouts[1]],
       },
     ],
   },

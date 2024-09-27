@@ -9,15 +9,12 @@ export const getMyProgramsAction = async () => {
 
   const programs = await prisma.program.findMany({
     where: { userId: user.id },
-    select: {
-      id: true,
-      title: true,
+    include: {
       days: {
-        select: {
-          title: true,
-          id: true,
+        include: {
           workouts: {
-            orderBy: { updatedAt: "desc" },
+            include: { workout: true },
+            orderBy: { order: "asc"},
           },
         },
         orderBy: { title: "asc" },

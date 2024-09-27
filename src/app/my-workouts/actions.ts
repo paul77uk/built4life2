@@ -1,4 +1,3 @@
-import { programs } from '@/data/programs';
 "use server";
 
 import prisma from "@/db/prisma";
@@ -6,6 +5,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Workout } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
+// TODO: check no duplicate of the hard coded workouts in the database
 
 export const createMyWorkoutAction = async ({
   title,

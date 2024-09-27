@@ -41,7 +41,7 @@ model Subscription {
 model Workout {
   id          String   @id @default(cuid())
   userId      String?
-  title       String   @unique
+  title       String
   description String
   exercises   String[]
   pr          Int?
@@ -49,17 +49,17 @@ model Workout {
   seconds     Int?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  days        Day[]
 
-  user      User?   @relation(fields: [userId], references: [id])
-  programId String?
+  user           User?            @relation(fields: [userId], references: [id])
+  programId      String?
+  days WorkoutsOnDays[]
 
   @@index([userId])
 }
 
 model Program {
   id        String   @id @default(cuid())
-  title     String   @unique
+  title     String
   days      Day[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -68,12 +68,24 @@ model Program {
 }
 
 model Day {
-  id        String    @id @default(cuid())
-  title     String
-  workouts  Workout[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id    String @id @default(cuid())
+  title String
 
-  Program   Program? @relation(fields: [programId], references: [id], onDelete: Cascade)
-  programId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Program        Program?         @relation(fields: [programId], references: [id], onDelete: Cascade)
+  programId      String?
+  workouts WorkoutsOnDays[]
+}
+
+model WorkoutsOnDays {
+  dayId      String
+  workoutId  String
+  order      Int
+
+  day     Day     @relation(fields: [dayId], references: [id])
+  workout Workout @relation(fields: [workoutId], references: [id])
+
+  @@id([dayId, workoutId])
 }

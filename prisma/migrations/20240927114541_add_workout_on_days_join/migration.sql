@@ -65,9 +65,12 @@ CREATE TABLE "Day" (
 );
 
 -- CreateTable
-CREATE TABLE "_DayToWorkout" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+CREATE TABLE "WorkoutsOnDays" (
+    "dayId" TEXT NOT NULL,
+    "workoutId" TEXT NOT NULL,
+    "assignedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "WorkoutsOnDays_pkey" PRIMARY KEY ("dayId","workoutId")
 );
 
 -- CreateIndex
@@ -83,19 +86,7 @@ CREATE UNIQUE INDEX "Subscription_userId_key" ON "Subscription"("userId");
 CREATE INDEX "Subscription_userId_idx" ON "Subscription"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Workout_title_key" ON "Workout"("title");
-
--- CreateIndex
 CREATE INDEX "Workout_userId_idx" ON "Workout"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Program_title_key" ON "Program"("title");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_DayToWorkout_AB_unique" ON "_DayToWorkout"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_DayToWorkout_B_index" ON "_DayToWorkout"("B");
 
 -- AddForeignKey
 ALTER TABLE "Subscription" ADD CONSTRAINT "Subscription_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -110,7 +101,7 @@ ALTER TABLE "Program" ADD CONSTRAINT "Program_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "Day" ADD CONSTRAINT "Day_programId_fkey" FOREIGN KEY ("programId") REFERENCES "Program"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_DayToWorkout" ADD CONSTRAINT "_DayToWorkout_A_fkey" FOREIGN KEY ("A") REFERENCES "Day"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "WorkoutsOnDays" ADD CONSTRAINT "WorkoutsOnDays_dayId_fkey" FOREIGN KEY ("dayId") REFERENCES "Day"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_DayToWorkout" ADD CONSTRAINT "_DayToWorkout_B_fkey" FOREIGN KEY ("B") REFERENCES "Workout"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "WorkoutsOnDays" ADD CONSTRAINT "WorkoutsOnDays_workoutId_fkey" FOREIGN KEY ("workoutId") REFERENCES "Workout"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

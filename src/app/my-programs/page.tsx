@@ -28,17 +28,18 @@ type ProgramType = {
     id: string;
     title: string;
     workouts: {
-      id: string;
-      userId: string | null;
-      title: string;
-      description: string;
-      exercises: string[];
-      pr: number | null;
-      minutes: number | null;
-      seconds: number | null;
-      createdAt: Date;
-      updatedAt: Date;
-      programId: string | null;
+      dayId: string;
+      workoutId: string;
+      assignedAt: Date;
+      workout: {
+        id: string;
+        title: string;
+        description: string;
+        exercises: string[];
+        pr: number | null;
+        minutes: number | null;
+        seconds: number | null;
+      };
     }[];
   }[];
 };
@@ -206,10 +207,13 @@ const Page = () => {
                         <TabsContent value={day.id} key={day.id}>
                           {day.workouts.map((workout) => (
                             <div
-                              key={workout.id}
+                              key={workout.workout.id}
                               className="my-5 flex justify-center"
                             >
-                              <MyWorkout key={workout.id} workout={workout} />
+                              <MyWorkout
+                                key={workout.workout.id}
+                                workout={workout.workout}
+                              />
                             </div>
                           ))}
                         </TabsContent>

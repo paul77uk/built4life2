@@ -18,7 +18,7 @@ import { toast } from "@/hooks/use-toast";
 import { updateMyWorkoutAction } from "./actions";
 import { Workout } from "@prisma/client";
 
-const MyWorkout = ({ workout }: { workout: Workout }) => {
+const MyWorkout = ({ workout }: { workout: Partial<Workout> }) => {
   const [totalReps, setTotalReps] = useState(0);
 
   const { mutate, isPending } = useMutation({

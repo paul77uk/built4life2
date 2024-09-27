@@ -1,5 +1,3 @@
-import { title } from "process";
-
 export const workouts = [
   // index 0
   {
@@ -355,20 +353,20 @@ export const workouts = [
   },
   // index 44
   {
-    title: 'AMRAP Push Ups in 5 minutes',
-    description: 'AMRAP in 5 minutes',
-    exercises: ['Push Ups'],
+    title: "AMRAP Push Ups in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Push Ups"],
     pr: 135,
     minutes: 5,
     seconds: 0,
   },
   // index 45
   {
-    title: 'AMRAP Inverted Rows in 5 minutes',
-    description: 'AMRAP in 5 minutes',
-    exercises: ['Inverted Rows'],
+    title: "AMRAP Inverted Rows in 5 minutes",
+    description: "AMRAP in 5 minutes",
+    exercises: ["Inverted Rows"],
     pr: 53,
     minutes: 5,
     seconds: 0,
-  }
+  },
 ];
