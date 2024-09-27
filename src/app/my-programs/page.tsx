@@ -30,7 +30,7 @@ type ProgramType = {
     workouts: {
       dayId: string;
       workoutId: string;
-      assignedAt: Date;
+      order: number;
       workout: {
         id: string;
         title: string;
