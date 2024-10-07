@@ -29,7 +29,7 @@ type ProgramType = {
     title: string;
     workouts: {
       dayId: string;
-      workoutId: string;
+      workoutTitle: string;
       order: number;
       workout: {
         id: string;
@@ -54,11 +54,7 @@ const Page = () => {
     queryFn: async () => await getMyProgramsAction(),
   });
 
-  const [currentProgram, setCurrentProgram] = useState<ProgramType>({
-    id: "",
-    title: "",
-    days: [],
-  });
+  const [currentProgram, setCurrentProgram] = useState<ProgramType>();
 
   useEffect(() => {
     if (programs) {
@@ -99,7 +95,7 @@ const Page = () => {
                     href="#"
                     className={cn(
                       "rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
-                      program.title === currentProgram.title &&
+                      program.title === currentProgram?.title &&
                         "bg-muted text-primary font-semibold"
                     )}
                   >
@@ -176,7 +172,9 @@ const Page = () => {
                 </div>
               </SheetContent>
             </Sheet>
-            <div className="font-semibold">{currentProgram.title}</div>
+            <div className="font-semibold">
+              {currentProgram?.title ?? "No Program Selected"}
+            </div>
           </header>
           <main className="flex flex-1 flex-col gap-4 p-2 lg:gap-6 lg:p-2">
             {/* <div className="flex items-center">
@@ -194,7 +192,7 @@ const Page = () => {
                   <div>
                     <TabsList>
                       <div>
-                        {currentProgram.days.map((day) => (
+                        {currentProgram?.days.map((day) => (
                           <TabsTrigger value={day.id} key={day.id}>
                             {day.title}
                           </TabsTrigger>
@@ -203,7 +201,7 @@ const Page = () => {
                     </TabsList>
 
                     <div>
-                      {currentProgram.days.map((day) => (
+                      {currentProgram?.days.map((day) => (
                         <TabsContent value={day.id} key={day.id}>
                           {day.workouts.map((workout) => (
                             <div

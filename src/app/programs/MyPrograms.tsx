@@ -41,6 +41,7 @@ const MyPrograms = ({ isSubscribed }: { isSubscribed: boolean }) => {
         title: "Program Added",
         description: `${currentProgram.title} added to My Programs`,
       });
+      
     },
     onError: (error) => {
       toast({

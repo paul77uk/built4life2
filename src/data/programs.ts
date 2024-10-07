@@ -19,9 +19,9 @@ export const programs = [
         title: "Day 2",
         workouts: [
           workouts[16],
-          workouts[18],
+          workouts[44],
           workouts[19],
-          workouts[20],
+          workouts[45],
           workouts[22],
           workouts[21],
         ],

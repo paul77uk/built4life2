@@ -19,6 +19,22 @@ export const createMyWorkoutAction = async ({
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
+  // check if the workout already exists
+  const existingWorkout = await prisma.workout.findFirst({
+    where: {
+      userId: user.id,
+      title,
+    },
+  });
+
+  // if the workout already exists, return an error
+  if (existingWorkout) {
+    // return { success: false, error: "Workout already exists" };
+    throw new Error("Workout already exists in My Workouts");
+  }
+
+  // else, create the workout
+
   const workout = await prisma.workout.create({
     data: {
       title: title ?? "",
